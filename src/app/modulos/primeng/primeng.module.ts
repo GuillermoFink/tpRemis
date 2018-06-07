@@ -15,6 +15,8 @@ import {AccordionModule} from 'primeng/accordion';
 import {DataTableModule} from 'primeng/datatable';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ import {PanelModule} from 'primeng/panel';
     AccordionModule,
     DataTableModule,
     DropdownModule,
-    PanelModule
+    PanelModule,
+    ProgressBarModule,
+    ProgressSpinnerModule
     
   ],
   exports: [
@@ -50,7 +54,9 @@ import {PanelModule} from 'primeng/panel';
     AccordionModule,
     DataTableModule,
     DropdownModule,
-    PanelModule
+    PanelModule,
+    ProgressBarModule,
+    ProgressSpinnerModule
   ],
   declarations: []
 })

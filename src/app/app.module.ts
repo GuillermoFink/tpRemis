@@ -24,6 +24,10 @@ const config: Routes=[
     component: LoginComponent
   },
   {
+    path: "login",
+    component: LoginComponent
+  },
+  {
     path: "home",
     component: HomeComponent
   },
@@ -34,6 +38,10 @@ const config: Routes=[
   {
     path: "estadisticas",
     component: EstadisticasComponent
+  },
+  {
+    path: "tablas",
+    component: TablasComponent
   }
 ]
 

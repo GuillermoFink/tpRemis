@@ -21,6 +21,11 @@ export class HomeComponent implements OnInit {
             
         },
         {
+            label: 'Salir',
+            icon: 'fa-cancel',
+            routerLink: ['/login']
+        },
+        {
             label: 'Mi Usuario',
             icon: 'fa-user',
             items: [

@@ -1,77 +1,92 @@
 <p-growl [value]="msgs" sticky="sticky"></p-growl>
 
 <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
-    <p-panel header="Validate">
+    <p-panel header="Registro de Usuario">
         <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
             <div class="ui-grid-row">
-                <div class="ui-grid-col-2">
-                    First Name *:
+                <div class="ui-grid-col-3">
+                    Nombre:
                 </div>
-                <div class="ui-grid-col-6">
-                    <input pInputText type="text" formControlName="firstname" placeholder="Required"/>
+                <div class="ui-grid-col-5">
+                    <input pInputText type="text" formControlName="firstname" placeholder="Requerido"/>
                 </div>
                 <div class="ui-grid-col-4">
                     <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['firstname'].valid&&userform.controls['firstname'].dirty">
                         <i class="fa fa-close"></i>
-                        Firstname is required
+                        Campo Obligatorio
                     </div>
                 </div>
             </div>
             <div class="ui-grid-row">
-                <div class="ui-grid-col-2">
-                    Last Name *:
+                <div class="ui-grid-col-3">
+                    Apellido:
                 </div>
-                <div class="ui-grid-col-6">
-                    <input pInputText type="text" formControlName="lastname" placeholder="Required"/>
+                <div class="ui-grid-col-5">
+                    <input pInputText type="text" formControlName="lastname" placeholder="Requerido"/>
                 </div>
                 <div class="ui-grid-col-4">
                     <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['lastname'].valid&&userform.controls['lastname'].dirty">
                         <i class="fa fa-close"></i>
-                        Lastname is required
+                        Campo Obligatorio
                     </div>
                 </div>
             </div>
             <div class="ui-grid-row">
-                <div class="ui-grid-col-2">
-                    Password *:
+                <div class="ui-grid-col-3">
+                    Password:
                 </div>
-                <div class="ui-grid-col-6">
-                    <input pInputText type="password" formControlName="password" placeholder="Required - Min(6)"/>
+                <div class="ui-grid-col-5">
+                    <input pInputText type="password" formControlName="password" placeholder="Requerido - Min(8)"/>
                 </div>
                 <div class="ui-grid-col-4">
                     <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty">
                         <i class="fa fa-close"></i>
-                        <span *ngIf="userform.controls['password'].errors['required']">Password is required</span>
+                        <span *ngIf="userform.controls['password'].errors['required']">Campo Obligatorio</span>
                         <span *ngIf="userform.controls['password'].errors['minlength']">Must be longer than 6 characters</span>
                     </div>
                 </div>
             </div>
             <div class="ui-grid-row">
-                <div class="ui-grid-col-2">
+                <div class="ui-grid-col-3">
+                    Repetir Password:
+                </div>
+                <div class="ui-grid-col-5">
+                    <input pInputText type="password" formControlName="password" placeholder="Requerido - Min(8)"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty">
+                        <i class="fa fa-close"></i>
+                        <span *ngIf="userform.controls['password'].errors['required']">Campo Obligatorio</span>
+                        <span *ngIf="userform.controls['password'].errors['minlength']">Must be longer than 6 characters</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3">
                     Description:
                 </div>
-                <div class="ui-grid-col-6">
+                <div class="ui-grid-col-5">
                     <textarea pInputTextarea type="text" formControlName="description"></textarea>
                 </div>
                 <div class="ui-grid-col-4"></div>
             </div>
             <div class="ui-grid-row">
-                <div class="ui-grid-col-2">
-                    Gender *:
+                <div class="ui-grid-col-3">
+                    Sexo:
                 </div>
-                <div class="ui-grid-col-6">
+                <div class="ui-grid-col-5">
                     <p-dropdown [options]="genders" formControlName="gender" [autoWidth]="false"></p-dropdown>
                 </div>
                 <div class="ui-grid-col-4">
                     <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['gender'].valid&&userform.controls['gender'].dirty">
                         <i class="fa fa-close"></i>
-                        Gender is required
+                        Campo Obligatorio
                     </div>
                 </div>
             </div>
             <div class="ui-grid-row">
-                <div class="ui-grid-col-2"></div>
-                <div class="ui-grid-col-6">
+                <div class="ui-grid-col-3"></div>
+                <div class="ui-grid-col-5">
                     <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>
                 </div>
                 <div class="ui-grid-col-4"></div>

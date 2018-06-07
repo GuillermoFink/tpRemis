@@ -1,9 +1,11 @@
+<app-menu></app-menu>
 <div>
-<input #gb type="text">
+    <input #gb type="text">
 </div>
-<p-dataTable [value]="cuerpoTabla" [rows]=10 [paginator]="true" sortMode="multiple" [globalFilter] = "gb" [(selection)]="unObjeto" >
-<p-header> {{tituloTabla}} </p-header>
-<p-column *ngFor = "let col of cols" [field]="col.field" [header]="col.header" [sortable]="true"></p-column>
-<p-column selectionMode='single' [header]='A'></p-column>
+<p-dataTable [value]="cuerpoTabla" [rows]=10 [paginator]="true" sortMode="multiple" [globalFilter]="gb" [(selection)]="unObjeto">
+    <p-header> {{tituloTabla}} </p-header>
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true"></p-column>
+    <p-column selectionMode='single' [header]='A'></p-column>
 </p-dataTable>
- {{unObjeto.nombre}}
+<p-progressBar mode="indeterminate" *ngIf="cuerpoTabla == null"></p-progressBar>
+{{unObjeto.nombre}}

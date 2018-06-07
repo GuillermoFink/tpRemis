@@ -26,15 +26,17 @@ export class RegistroComponent implements OnInit {
     this.userform = this.fb.group({
       'firstname': new FormControl('', Validators.required),
       'lastname': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(8)])),
+      
       'description': new FormControl(''),
       'gender': new FormControl('', Validators.required)
     });
 
     this.genders = [];
-    this.genders.push({ label: 'Select Gender', value: '' });
-    this.genders.push({ label: 'Male', value: 'Male' });
-    this.genders.push({ label: 'Female', value: 'Female' });
+    this.genders.push({ label: 'Elegir Sexo', value: '' });
+    this.genders.push({ label: 'Hombre', value: 'hombre' });
+    this.genders.push({ label: 'Mujer', value: 'mujer' });
+    this.genders.push({ label: 'Indefinido', value: 'trol@' });
   }
   onSubmit(value: string) {
     this.submitted = true;
@@ -43,4 +45,11 @@ export class RegistroComponent implements OnInit {
   }
 
   get diagnostic() { return JSON.stringify(this.userform.value); }
+  
+  ValidarPws() {
+    console.log("EJECUTO CONSULTA");
+    return false;
+
+  }
+
 }
