@@ -10,6 +10,9 @@ import { HttpModule } from '@angular/http';
 import { Cliente } from './clases/cliente';
 import { ServicioClienteService } from './servicios/cliente/servicio-cliente.service';
 
+// IMPORT DE ANGULAR GOOGLE MAPS
+import { AgmCoreModule } from '@agm/core';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { HomeComponent } from './componentes/home/home.component';
@@ -19,7 +22,7 @@ import { MenuComponent } from './componentes/menu/menu.component';
 import { TablasComponent } from './componentes/tablas/tablas.component';
 import { SolicitarViajeComponent } from './componentes/solicitar-viaje/solicitar-viaje.component';
 
-const config: Routes=[
+const config: Routes = [
   {
     path: "",
     component: LoginComponent
@@ -68,10 +71,13 @@ const config: Routes=[
     PrimengModule,
     HttpModule,
     RouterModule.forRoot(config),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCvAqOdPIPCsYogT5L_4VcKHDeCrcNjpFM'
+    })
   ],
-  providers: [Cliente,ServicioClienteService],
+  providers: [Cliente, ServicioClienteService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
- }
+}

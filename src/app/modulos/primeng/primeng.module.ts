@@ -17,6 +17,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {ToggleButtonModule} from 'primeng/togglebutton';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     DropdownModule,
     PanelModule,
     ProgressBarModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToggleButtonModule
     
   ],
   exports: [
@@ -56,7 +58,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     DropdownModule,
     PanelModule,
     ProgressBarModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToggleButtonModule
   ],
   declarations: []
 })

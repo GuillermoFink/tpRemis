@@ -8,13 +8,36 @@
             Nombre:
           </div>
           <div class="ui-grid-col-6">
-            Sarasa
+            Nombre del usuario
           </div>
           <div class="ui-grid-col-6">
             Origen:
           </div>
           <div class="ui-grid-col-6">
-            Lomas
+            <p-toggleButton [(ngModel)]="checkCasa" onLabel="No estoy en casa" offLabel="Otro destino" [ngModelOptions]="{standalone: true}">
+            </p-toggleButton>
+          </div>
+          <div *ngIf="checkCasa == false">
+            <div class="ui-grid-col-12" style="background-color: blue; text-align: center;">
+              Datos de Origen
+            </div>
+              <div class="ui-grid-col-6">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">
+                    <i class="fa fa-road"></i>
+                  </span>
+                  <input type="text" pInputText placeholder="Calle">
+                </div>
+              </div>
+              <div class="ui-grid-col-6">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">
+                    <i class="fa fa-stream"></i>
+                  </span>
+                  <input type="text" pInputText placeholder="Numero">
+                </div>
+              </div>
+            
           </div>
           <div class="ui-grid-col-6">
             Destino:
@@ -24,7 +47,13 @@
           </div>
         </div>
         <div class="ui-grid-col-8">
-          ACA VA EL MAPA
+
+          <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng">
+              <agm-info-window>Casa</agm-info-window>
+            </agm-marker>
+
+          </agm-map>
         </div>
       </div>
       <div class="ui-grid-row">
