@@ -11,12 +11,13 @@ export class MenuComponent implements OnInit {
 
     constructor() { }
 
-    items: MenuItem[];
-
+    itemsCliente: MenuItem[];
+    itemsEmpleado: MenuItem[];
     itemsAdm: MenuItem[];
 
     ngOnInit() {
-        this.items = [
+        //MENU CLIENTE
+        this.itemsCliente = [
             {
                 label: 'Home',
                 icon: 'fa fa-home',
@@ -38,23 +39,23 @@ export class MenuComponent implements OnInit {
                 label: 'Servicio',
                 icon: 'fa-car',
                 items: [
-                    { label: 'Solicitar vehiculo', icon: 'fa-car', routerLink: ['/tablas'] },
+                    { label: 'Solicitar vehiculo', icon: 'fa-car', routerLink: ['/solicitarViaje'] },
                     { label: 'Cancelar vehiculo', icon: 'fa-ban' },
                     { label: 'Calificar viaje', icon: 'fa-star' }
                 ],
 
             },
         ];
-
+        //MENU DE ADMINISTRADOR
         this.itemsAdm = [
             {
                 label: ' Usuarios',
                 icon: 'fa fa-users-cog',
-                items:[
+                items: [
                     {
-                        label: ' Alta de usuario', 
+                        label: ' Alta de usuario',
                         icon: 'fa-user-plus',
-                        items:[
+                        items: [
                             {
                                 label: ' Alta de Admin',
                                 icon: 'fa-user-ninja',
@@ -82,13 +83,48 @@ export class MenuComponent implements OnInit {
             {
                 label: ' Reportes',
                 icon: 'fa-newspaper',
-                items:[
-                    {label: ' Reporte Choferes', icon: 'fa-taxi'},
-                    {label: ' Calificacion usuarios', icon: 'fa-address-card'},
-                    {label: ' Reporte empleados', icon: 'fa-store'}
+                items: [
+                    { label: ' Reporte Choferes', icon: 'fa-taxi' },
+                    { label: ' Calificacion usuarios', icon: 'fa-address-card' },
+                    { label: ' Reporte empleados', icon: 'fa-store' },
+                    //{ lbael: ' '}
                 ]
             }
         ];
+        //MENU DE EMPLEADO
+        this.itemsEmpleado = [
+            {
+                label: ' Choferes', icon: 'fa-address-card', items: [
+                    { label: ' Alta de chofer', icon: 'fa-user-check' },
+                    { label: ' Baja de chofer', icon: 'fa-user-slash' },
+                    { label: ' Asignar Vehiculo', icon: 'fa-user-md' }
+                ]
+            },
+            {
+                label: ' Viajes', icon: 'fa-map-signs', items: [
+                    { label: 'Asignar viaje', icon: 'fa-plus' },
+                    { label: ' Cancelar Viaje', icon: 'fa-ban' },
+                    { label: ' Viajes Activos', icon: 'fa-taxi' },
+                    { label: ' Viajes Pendientes', icon: 'fa-calendar-check' },
+                    { label: ' Reservas', icon: 'fa-calendar-alt' }
+                ]
+            },
+            {
+                label: ' Clientes', icon: 'fa-user-tie', items: [
+                    { label: ' Alta de cliente', icon: 'fa-user-check' },
+                    { label: ' Baja de cliente', icon: 'fa-user-minus' },
+                ]
+            },
+            {
+                label: ' Vehiculos', icon: 'fa-car', items: [
+                    { label: ' Alta Vehiculo', icon: 'fa-plus' },
+                    { label: ' Baja Vehiculo', icon: 'fa-ban' },
+                    { label: ' Modificacion Vehiculo', icon: 'fa-exchange-alt' },
+                    { label: ' Aisgnar Chofer', icon: 'fa-user-md' }
+                ]
+            }
+        ];
+        
     }
 
 }

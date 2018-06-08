@@ -17,6 +17,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { EstadisticasComponent } from './componentes/estadisticas/estadisticas.component';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { TablasComponent } from './componentes/tablas/tablas.component';
+import { SolicitarViajeComponent } from './componentes/solicitar-viaje/solicitar-viaje.component';
 
 const config: Routes=[
   {
@@ -42,6 +43,10 @@ const config: Routes=[
   {
     path: "tablas",
     component: TablasComponent
+  },
+  {
+    path: "solicitarViaje",
+    component: SolicitarViajeComponent
   }
 ]
 
@@ -53,7 +58,8 @@ const config: Routes=[
     RegistroComponent,
     EstadisticasComponent,
     MenuComponent,
-    TablasComponent
+    TablasComponent,
+    SolicitarViajeComponent
   ],
   imports: [
     BrowserModule,
