@@ -87,7 +87,6 @@ export class MenuComponent implements OnInit {
                     { label: ' Reporte Choferes', icon: 'fa-taxi' },
                     { label: ' Calificacion usuarios', icon: 'fa-address-card' },
                     { label: ' Reporte empleados', icon: 'fa-store' },
-                    //{ lbael: ' '}
                 ]
             }
         ];

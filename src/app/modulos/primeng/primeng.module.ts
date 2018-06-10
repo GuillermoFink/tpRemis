@@ -18,6 +18,8 @@ import {PanelModule} from 'primeng/panel';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ToggleButtonModule} from 'primeng/togglebutton';
+import {InputTextModule} from 'primeng/inputtext';
+
 
 @NgModule({
   imports: [
@@ -38,7 +40,8 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     PanelModule,
     ProgressBarModule,
     ProgressSpinnerModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    InputTextModule
     
   ],
   exports: [
@@ -59,7 +62,8 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     PanelModule,
     ProgressBarModule,
     ProgressSpinnerModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    InputTextModule
   ],
   declarations: []
 })

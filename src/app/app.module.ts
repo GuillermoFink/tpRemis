@@ -76,7 +76,7 @@ const config: Routes = [
       apiKey: 'AIzaSyCvAqOdPIPCsYogT5L_4VcKHDeCrcNjpFM'
     })
   ],
-  providers: [Cliente, ServicioClienteService],
+  providers: [Cliente, ServicioClienteService, MiHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

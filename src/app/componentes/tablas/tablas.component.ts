@@ -19,7 +19,7 @@ export class TablasComponent implements OnInit {
   ngOnInit() {
     this.misClientes.traerTodosLosClientes().then(data => {
       this.cuerpoTabla = data;
-      console.log(this.cuerpoTabla);
+      //console.log(this.cuerpoTabla);
     });
     this.tituloTabla = "TABLA DE CLIENTES";
     this.cols = [
@@ -32,7 +32,7 @@ export class TablasComponent implements OnInit {
   ngOnChange(changes: SimpleChanges){
     this.misClientes.traerTodosLosClientes().then(data => {
       this.cuerpoTabla = data;
-      console.log(this.cuerpoTabla);
+      //console.log(this.cuerpoTabla);
     });
     this.tituloTabla = "SARASA";
     this.cols = [

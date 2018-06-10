@@ -14,11 +14,11 @@
             Origen:
           </div>
           <div class="ui-grid-col-6">
-            <p-toggleButton [(ngModel)]="checkCasa" onLabel="No estoy en casa" offLabel="Otro destino" [ngModelOptions]="{standalone: true}">
+            <p-toggleButton [(ngModel)]="checkCasa" onLabel='Saras_' offLabel="Otro destino" [ngModelOptions]="{standalone: true}">
             </p-toggleButton>
           </div>
           <div *ngIf="checkCasa == false">
-            <div class="ui-grid-col-12" style="background-color: blue; text-align: center;">
+            <div class="ui-grid-col-12" style="border: solid; ">
               Datos de Origen
             </div>
               <div class="ui-grid-col-6">
@@ -36,6 +36,21 @@
                   </span>
                   <input type="text" pInputText placeholder="Numero">
                 </div>
+              </div>
+              <div class="ui-grid-col-6" style="margin-top: 4%;">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">
+                    <i class="fa fa-map-signs"></i>
+                  </span>
+                  <input type="text" pInputText placeholder="Localidad">
+                </div>
+              </div>
+              <div class="ui-grid-col-6" style="margin-top: 4%;">
+                <span class="ui-float-label">
+                  <input id="float-input" type="text" size="30" pInputText> 
+                  <label for="float-input">Provincia</label>
+              </span>
+              
               </div>
             
           </div>

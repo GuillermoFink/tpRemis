@@ -1,4 +1,4 @@
-<input type="text">
-<input type="password">
-<button routerLink="/home">login</button>
+<input type="text" [(ngModel)]="user">
+<input type="password" [(ngModel)]="pw">
+<button routerLink="/tablas" (click)="login()">login</button>
 <button routerLink="/registro">Registro</button>
