@@ -24,6 +24,7 @@ import { EstadisticasComponent } from './componentes/estadisticas/estadisticas.c
 import { MenuComponent } from './componentes/menu/menu.component';
 import { TablasComponent } from './componentes/tablas/tablas.component';
 import { SolicitarViajeComponent } from './componentes/solicitar-viaje/solicitar-viaje.component';
+import { RegistroClienteComponent } from './componentes/registro-cliente/registro-cliente.component';
 
 const config: Routes = [
   {
@@ -40,7 +41,7 @@ const config: Routes = [
   },
   {
     path: "registro",
-    component: RegistroComponent
+    component: RegistroClienteComponent
   },
   {
     path: "estadisticas",
@@ -66,6 +67,7 @@ const config: Routes = [
     MenuComponent,
     TablasComponent,
     SolicitarViajeComponent,
+    RegistroClienteComponent,
 
   ],
   imports: [
