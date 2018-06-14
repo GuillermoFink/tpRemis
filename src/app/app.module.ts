@@ -6,12 +6,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { RouterModule, Routes, Route } from '@angular/router';
 import { MiHttpService } from './servicios/http/mi-http.service';
+import { HttpgoogleService } from './servicios/httpgmaps/httpgoogle.service';
 import { HttpModule } from '@angular/http';
 import { Cliente } from './clases/cliente';
 import { ServicioClienteService } from './servicios/cliente/servicio-cliente.service';
 
 // IMPORT DE ANGULAR GOOGLE MAPS
 import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -62,21 +65,25 @@ const config: Routes = [
     EstadisticasComponent,
     MenuComponent,
     TablasComponent,
-    SolicitarViajeComponent
+    SolicitarViajeComponent,
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     PrimengModule,
     HttpModule,
     RouterModule.forRoot(config),
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCvAqOdPIPCsYogT5L_4VcKHDeCrcNjpFM'
-    })
+      apiKey: 'AIzaSyCvAqOdPIPCsYogT5L_4VcKHDeCrcNjpFM',
+      libraries: ["places"]
+    }),
+    AgmDirectionModule
   ],
-  providers: [Cliente, ServicioClienteService, MiHttpService],
+  providers: [Cliente, ServicioClienteService, MiHttpService, AgmDirectionModule,HttpgoogleService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

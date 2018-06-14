@@ -1,0 +1,17 @@
+https://maps.googleapis.com/maps/api/distancematrix/json?origins=mitre+750+avellaneda&destinations=corrientes+3547+caba&key=AIzaSyCvAqOdPIPCsYogT5L_4VcKHDeCrcNjpFM
+
+
+
+$app->group {
+
+	grupaciones de peticiones
+
+}->ADD($mdw);
+Ejecuta primero lo que este en el ADD, se pueden agregar varios mdw's., siempre va a ejecutar primero el último mdw y va a ir saltando de control en control.
+
+
+
+$mdw = function ($req,$res,$next){
+	$res = $next($req,$res);
+	return $res
+}
