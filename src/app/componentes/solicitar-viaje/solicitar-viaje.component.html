@@ -3,7 +3,7 @@
   <p-panel header="Solicitud de vehiculo">
     <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px;">
       <div class="ui-grid-row">
-        <div class="ui-grid-col-4-nopad">
+        <!--   <div class="ui-grid-col-4-nopad">
           <div class="ui-grid-col-6">
             Nombre:
           </div>
@@ -83,18 +83,33 @@
           </div>
 
 
-        </div>
-        <div class="ui-grid-col-8">
-            <div class="container">
-                <div class="form-group">
-                      <h3 class="first">Ingresar Dirección</h3>
-                      <input id='float-input' placeholder="Ingresar Dirección" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl" style="width: 50%;">
-                  
-                </div>
-                <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-                  <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-                </agm-map>
+        </div> -->
+        <div class="ui-grid-col-12">
+          <div class="container">
+            <div class="form-group">
+              <div class="ui-grid-col-6">
+                <h3 class="first">Ingresar Dirección de Origen</h3>
+                <input id='float-input' placeholder="Ingresar Dirección" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+                  class="form-control" #search [formControl]="searchControl" style="width: 50%;">
               </div>
+              <div class="ui-grid-col-6">
+                <h3 class="first">Confirmar Origen</h3>
+                <button (click)="guardarOrigen()">Confirmar</button>
+              </div>
+
+              <br>
+
+            </div>
+            <div class="ui-grid-col-12">
+              <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                <agm-marker *ngIf="confirmaOrigen" [latitude]="latitude1" [longitude]="longitude1"></agm-marker>
+                <agm-direction *ngIf="muestroRuta" [origin]="dir.origin" [destination]="dir.destination">
+                </agm-direction>
+              </agm-map>
+            </div>
+
+          </div>
 
 
 
