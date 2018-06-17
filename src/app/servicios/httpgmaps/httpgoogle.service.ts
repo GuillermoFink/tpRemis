@@ -12,10 +12,15 @@ export class HttpgoogleService {
   ruta: string = "https://maps.googleapis.com/maps/api/distancematrix/json?";
   key: string = "&key=AIzaSyCvAqOdPIPCsYogT5L_4VcKHDeCrcNjpFM";
 
+  /*
+https://maps.googleapis.com/maps/api/distancematrix/json?origins=-34.7521695,-58.409642700000006&destinations=-34.6036236,-58.41504759999998&key=AIzaSyCvAqOdPIPCsYogT5L_4VcKHDeCrcNjpFM
+  */
+
   public httpGetP(origen: string, destino: string) {
     this.origen += origen;
     this.destino += destino;
     this.ruta += this.origen + this.destino + this.key;
+    console.log(this.ruta);
     return this.http
       .get(this.ruta)
       .toPromise()

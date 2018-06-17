@@ -55,6 +55,7 @@ const config: Routes = [
     path: "solicitarViaje",
     component: SolicitarViajeComponent
   }
+  
 ]
 
 @NgModule({

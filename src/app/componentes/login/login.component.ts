@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MiHttpService } from '../../servicios/http/mi-http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { MiHttpService } from '../../servicios/http/mi-http.service';
 export class LoginComponent implements OnInit {
   user: string;
   pw: string;
-  constructor(private miHttp: MiHttpService) {
+  constructor(private miHttp: MiHttpService, private miRoot: Router) {
     
    }
 
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
       let pay2 = payload.replace('-','+').replace('_','/');
       let datos = JSON.parse(atob(pay2));
       console.log(datos);
+      this.miRoot.navigate( ['/tablas'] );
     })
   }
 }

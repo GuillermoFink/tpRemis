@@ -31,8 +31,10 @@ export class MiHttpService {
 
 
   public httpPostP(url: string, objeto: any) {
+    let headers = new Headers({token: localStorage.getItem('token') });
+    let options = new RequestOptions( {'headers': headers} ) ;
     return this.http
-      .post(this.ruta + url, objeto)
+      .post(this.ruta + url, objeto, options)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);

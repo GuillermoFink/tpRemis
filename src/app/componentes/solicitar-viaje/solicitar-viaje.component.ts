@@ -13,16 +13,23 @@ import { HttpgoogleService } from '../../servicios/httpgmaps/httpgoogle.service'
 })
 
 export class SolicitarViajeComponent implements OnInit {
+  public OriLat: number;
+  public OriLng: number;
+  public DestLat: number;
+  public DestLng: number;
+
   public flag: number = 0;
   public dir: any;
   public confirmaOrigen: boolean = false;
   public muestroRuta: boolean = false;
   public latitude: number;
   public longitude: number;
-  public latitude1: number;
-  public longitude1: number;
   public searchControl: FormControl;
   public zoom: number;
+
+  public OriplaceGmaps: google.maps.places.PlaceResult;
+  public AuxPlaceGmaps: google.maps.places.PlaceResult;
+  public DestplaceGmaps: google.maps.places.PlaceResult;
 
   @ViewChild("search")
   public searchElementRef: ElementRef
@@ -30,9 +37,11 @@ export class SolicitarViajeComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
+    private miServicio: HttpgoogleService
   ) { }
 
   ngOnInit() {
+    
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
@@ -53,6 +62,7 @@ export class SolicitarViajeComponent implements OnInit {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.AuxPlaceGmaps = place;
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -63,14 +73,24 @@ export class SolicitarViajeComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
+          /*
           console.log(this.latitude);
           console.log("LATITUD EN CAMBIO");
-          this.flag++;
-          if(this.flag > 0 && this.confirmaOrigen == true){
-            this.muestroRuta = true;
+          console.log(this.flag);
+          this.flag+=1;
+          if(this.flag > 1 && this.confirmaOrigen == true){
             this.calcularRuta();
+            this.muestroRuta = true;
+            this.zoom = 14;
             console.log("Ejecuto el calcularRuta");
+            console.log("****************");
+            console.log(this.latitude);
+            console.log(this.latitude1);
+            console.log("********LONGITUDES*********");
+            console.log(this.longitude);
+            console.log(this.longitude1);
           }
+          */
         });
       });
     });
@@ -86,18 +106,60 @@ export class SolicitarViajeComponent implements OnInit {
     }
   }
   guardarOrigen() {
-    this.latitude1 = this.latitude;
-    this.longitude1 = this.longitude;
-    this.confirmaOrigen == true;
-    console.log(this.latitude1);
-    console.log(this.longitude1);
+    this.OriLat = this.latitude;
+    this.OriLng = this.longitude;
   }
-
+  guardarDestino(){
+    let servicio = new google.maps.DistanceMatrixService();
+   
+    this.DestLat = this.latitude;
+    this.DestLng = this.longitude;
+    this.calcularRuta();
+    this.muestroRuta = true;
+    let mode =  google.maps.TravelMode['DRIVING'];
+    let origen = new google.maps.LatLng(this.OriLat, this.OriLng);
+    let destino = new google.maps.LatLng(this.DestLat, this.DestLng);
+    servicio.getDistanceMatrix({
+      origins: [origen],
+      destinations: [destino],
+      travelMode: mode,
+      unitSystem: google.maps.UnitSystem.METRIC,
+      durationInTraffic: true,
+      avoidHighways: false,
+      avoidTolls: false
+    }, this.response_data);
+  }
+  response_data(responseDis, status){
+    if (status !== google.maps.DistanceMatrixStatus.OK || status != "OK"){
+      console.log("error", status);
+    }else{
+      alert(responseDis.rows[0].elements[0].distance.text+responseDis.rows[0].elements[0].duration.text);
+      console.log(responseDis);
+    }
+  }
   calcularRuta() {
     this.dir = {
-      origin: { lat: this.latitude1, lng: this.longitude1 },
-      destination: { lat: this.longitude, lng: this.longitude }
+      origin: { lat: this.OriLat, lng: this.OriLng },
+      destination: { lat: this.DestLat, lng: this.DestLng }
     }
+  }
+  calcularDistancias(): Promise<any> {
+    let origen: string = this.OriLat.toString()+","+this.OriLng.toString();
+    let destino: string = this.DestLat.toString()+","+this.DestLng.toString();
+    return this.miServicio.httpGetP(origen, destino)
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+
+
+    //console.log("ejecuto direcciones");
+    //this.dir = {
+    //  origin: { lat: 24.799448, lng: 120.979021 },
+    //  destination: { lat: 24.799524, lng: 120.975017 }
+
+    }
+
   }
 
 
@@ -166,4 +228,4 @@ export class SolicitarViajeComponent implements OnInit {
     } 
   */
 
-}
+
