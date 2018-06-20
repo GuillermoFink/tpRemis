@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone, ElementRef, ViewChild } from '@angular/core';
+
 import { AgmDirection } from 'agm-direction';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
@@ -13,6 +14,10 @@ import { HttpgoogleService } from '../../servicios/httpgmaps/httpgoogle.service'
 })
 
 export class SolicitarViajeComponent implements OnInit {
+  public seleccionoOirgen: boolean = true;
+  public seleccionoDestino: boolean = false;
+  
+
   public OriLat: number;
   public OriLng: number;
   public DestLat: number;
@@ -41,7 +46,7 @@ export class SolicitarViajeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
@@ -73,29 +78,12 @@ export class SolicitarViajeComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
-          /*
-          console.log(this.latitude);
-          console.log("LATITUD EN CAMBIO");
-          console.log(this.flag);
-          this.flag+=1;
-          if(this.flag > 1 && this.confirmaOrigen == true){
-            this.calcularRuta();
-            this.muestroRuta = true;
-            this.zoom = 14;
-            console.log("Ejecuto el calcularRuta");
-            console.log("****************");
-            console.log(this.latitude);
-            console.log(this.latitude1);
-            console.log("********LONGITUDES*********");
-            console.log(this.longitude);
-            console.log(this.longitude1);
-          }
-          */
+
         });
       });
     });
   }
- 
+
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -108,15 +96,19 @@ export class SolicitarViajeComponent implements OnInit {
   guardarOrigen() {
     this.OriLat = this.latitude;
     this.OriLng = this.longitude;
+    this.seleccionoOirgen = !this.seleccionoOirgen;
+    this.seleccionoDestino = !this.seleccionoDestino;
+    (<HTMLInputElement>document.getElementById('float-input')).value = " ";
+    (<HTMLInputElement>document.getElementById('tituloOrigen')).textContent = "Seleccione Destino";
   }
-  guardarDestino(){
+  guardarDestino() {
     let servicio = new google.maps.DistanceMatrixService();
-   
+
     this.DestLat = this.latitude;
     this.DestLng = this.longitude;
     this.calcularRuta();
     this.muestroRuta = true;
-    let mode =  google.maps.TravelMode['DRIVING'];
+    let mode = google.maps.TravelMode['DRIVING'];
     let origen = new google.maps.LatLng(this.OriLat, this.OriLng);
     let destino = new google.maps.LatLng(this.DestLat, this.DestLng);
     servicio.getDistanceMatrix({
@@ -129,11 +121,11 @@ export class SolicitarViajeComponent implements OnInit {
       avoidTolls: false
     }, this.response_data);
   }
-  response_data(responseDis, status){
-    if (status !== google.maps.DistanceMatrixStatus.OK || status != "OK"){
+  response_data(responseDis, status) {
+    if (status !== google.maps.DistanceMatrixStatus.OK || status != "OK") {
       console.log("error", status);
-    }else{
-      alert(responseDis.rows[0].elements[0].distance.text+responseDis.rows[0].elements[0].duration.text);
+    } else {
+      alert(responseDis.rows[0].elements[0].distance.text + responseDis.rows[0].elements[0].duration.text);
       console.log(responseDis);
     }
   }
@@ -144,20 +136,17 @@ export class SolicitarViajeComponent implements OnInit {
     }
   }
   calcularDistancias(): Promise<any> {
-    let origen: string = this.OriLat.toString()+","+this.OriLng.toString();
-    let destino: string = this.DestLat.toString()+","+this.DestLng.toString();
+    let origen: string = this.OriLat.toString() + "," + this.OriLng.toString();
+    let destino: string = this.DestLat.toString() + "," + this.DestLng.toString();
     return this.miServicio.httpGetP(origen, destino)
       .then(data => {
         console.log(data);
         return data;
       })
-
-
     //console.log("ejecuto direcciones");
     //this.dir = {
     //  origin: { lat: 24.799448, lng: 120.979021 },
     //  destination: { lat: 24.799524, lng: 120.975017 }
-
-    }
-
   }
+
+}

@@ -3,100 +3,30 @@
   <p-panel header="Solicitud de vehiculo">
     <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px;">
       <div class="ui-grid-row">
-        <!--   <div class="ui-grid-col-4-nopad">
-          <div class="ui-grid-col-6">
-            Nombre:
-          </div>
-          <div class="ui-grid-col-6">
-            Nombre del usuario
-          </div>
-          <div class="ui-grid-col-6">
-            Origen:
-          </div>
-          <div class="ui-grid-col-6">
-            <p-toggleButton [(ngModel)]="checkCasa" onLabel='No_estoy_en_casa' offLabel="Otro destino" [ngModelOptions]="{standalone: true}">
-            </p-toggleButton>
-          </div>
-          <div *ngIf="checkCasa == false">
-            <div class="ui-grid-col-12">
-              <div class="ui-grid-col-12" style="border: solid; text-align: center; margin-right: 1%">
-                Datos de Origen
-              </div>
-
-              <div class="ui-grid-col-6" style="margin-top: 2.5%;">
-                <span class="ui-float-label">
-                  <input id="float-input" type="text" size="30" [(ngModel)]="calleOrigen" [ngModelOptions]="{standalone: true}" pInputText>
-                  <label for="float-input">Calle</label>
-                </span>
-              </div>
-              <div class="ui-grid-col-6" style="margin-top: 2.5%;">
-                <span class="ui-float-label">
-                  <input id="float-input" type="text" size="10" [(ngModel)]="numeroOrigen" [ngModelOptions]="{standalone: true}" pInputText>
-                  <label for="float-input">Numero</label>
-                </span>
-              </div>
-              <div class="ui-grid-col-6" style="margin-top: 2.5%;">
-                <span class="ui-float-label">
-                  <input id="float-input" type="text" size="30" [(ngModel)]="localidadOrigen" [ngModelOptions]="{standalone: true}" pInputText>
-                  <label for="float-input">Localidad</label>
-                </span>
-              </div>
-              <div class="ui-grid-col-6" style="margin-top: 2.5%;">
-                <span class="ui-float-label">
-                  <input id="float-input" type="text" size="30" [(ngModel)]="provinciaOrigen" [ngModelOptions]="{standalone: true}" pInputText>
-                  <label for="float-input">Provincia</label>
-                </span>
-              </div>
-
-
-            </div>
-          </div>
-          <div class="ui-grid-col-12">
-            <div class="ui-grid-col-12" style="border: solid; text-align: center;">
-                Datos de Destino
-            </div>
-            <div class="ui-grid-col-6" style="margin-top: 2.5%;">
-                <span class="ui-float-label">
-                  <input id="float-input" type="text" size="30" [(ngModel)]="calleDestino" [ngModelOptions]="{standalone: true}" pInputText>
-                  <label for="float-input">Calle</label>
-                </span>
-              </div>
-              <div class="ui-grid-col-6" style="margin-top: 2.5%;">
-                <span class="ui-float-label">
-                  <input id="float-input" type="text" size="30" [(ngModel)]="numeroDestino" [ngModelOptions]="{standalone: true}" pInputText>
-                  <label for="float-input">Numero</label>
-                </span>
-              </div>
-              <div class="ui-grid-col-6" style="margin-top: 2.5%;">
-                <span class="ui-float-label">
-                  <input id="float-input" type="text" size="30" [(ngModel)]="localidadDestino" [ngModelOptions]="{standalone: true}" pInputText>
-                  <label for="float-input">Localidad</label>
-                </span>
-              </div>
-              <div class="ui-grid-col-6" style="margin-top: 2.5%;">
-                <span class="ui-float-label">
-                  <input id="float-input" type="text" size="30" [(ngModel)]="provinciaDestino" [ngModelOptions]="{standalone: true}" pInputText>
-                  <label for="float-input">Provincia</label>
-                </span>
-              </div>
-
-          </div>
-
-
-        </div> -->
-        <div class="ui-grid-col-12">
+        <div class="ui-grid-col-6">
+          <p-panel header="Preferencias de vehiculos">
+            <app-tablas></app-tablas>
+          </p-panel>
+        </div>
+        
+        <div class="ui-grid-col-6">
           <div class="container">
             <div class="form-group">
               <div class="ui-grid-col-6">
-                <h3 class="first">Ingresar Dirección de Origen</h3>
+                <h3 class="first" id="tituloOrigen">Ingresar Dirección de Origen</h3>
                 <input id='float-input' placeholder="Ingresar Dirección" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
                   class="form-control" #search [formControl]="searchControl" style="width: 50%;">
               </div>
               <div class="ui-grid-col-6">
-                <h3 class="first">Confirmar Origen</h3>
-                <button (click)="guardarOrigen()">Confirmar</button>
-                <h3 class="first">Confirmar Destino</h3>
-                <button (click)="guardarDestino()">Confirmar</button>
+                <div *ngIf="seleccionoOirgen">
+                  <h3 class="first">Confirmar Origen</h3>
+                  <button pButton type="button" (click)="guardarOrigen()" label="Confirmar" class="ui-button-info"></button>
+                </div>
+                <div *ngIf="seleccionoDestino">
+                  <h3 class="first">Confirmar Destino</h3>
+                  <button pButton type="button" (click)="guardarDestino()" label="Confirmar" class="ui-button-success"></button>
+                </div>
+
               </div>
 
               <br>
@@ -112,10 +42,6 @@
             </div>
 
           </div>
-
-
-
-
           <!-- mapa original
           <agm-map [latitude]="lat" [longitude]="lng">
             <agm-marker [latitude]="lat" [longitude]="lng">
@@ -130,6 +56,7 @@
 
           </agm-map>
           -->
+          
         </div>
       </div>
       <div class="ui-grid-row">

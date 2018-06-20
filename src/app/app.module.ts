@@ -10,6 +10,8 @@ import { HttpgoogleService } from './servicios/httpgmaps/httpgoogle.service';
 import { HttpModule } from '@angular/http';
 import { Cliente } from './clases/cliente';
 import { ServicioClienteService } from './servicios/cliente/servicio-cliente.service';
+import { Vehiculo } from './clases/vehiculo';
+import { VehiculosService } from './servicios/vehiculos/vehiculos.service';
 
 // IMPORT DE ANGULAR GOOGLE MAPS
 import { AgmCoreModule } from '@agm/core';
@@ -25,6 +27,7 @@ import { MenuComponent } from './componentes/menu/menu.component';
 import { TablasComponent } from './componentes/tablas/tablas.component';
 import { SolicitarViajeComponent } from './componentes/solicitar-viaje/solicitar-viaje.component';
 import { RegistroClienteComponent } from './componentes/registro-cliente/registro-cliente.component';
+import { SinoPipe } from './pipes/sinoPipe/sino.pipe';
 
 const config: Routes = [
   {
@@ -55,7 +58,7 @@ const config: Routes = [
     path: "solicitarViaje",
     component: SolicitarViajeComponent
   }
-  
+
 ]
 
 @NgModule({
@@ -69,6 +72,7 @@ const config: Routes = [
     TablasComponent,
     SolicitarViajeComponent,
     RegistroClienteComponent,
+    SinoPipe,
 
   ],
   imports: [
@@ -86,7 +90,7 @@ const config: Routes = [
     }),
     AgmDirectionModule
   ],
-  providers: [Cliente, ServicioClienteService, MiHttpService, AgmDirectionModule,HttpgoogleService],
+  providers: [Cliente,Vehiculo, ServicioClienteService, MiHttpService, AgmDirectionModule, HttpgoogleService, VehiculosService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
