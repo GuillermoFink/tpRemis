@@ -16,6 +16,11 @@ import { HttpgoogleService } from '../../servicios/httpgmaps/httpgoogle.service'
 export class SolicitarViajeComponent implements OnInit {
   public seleccionoOirgen: boolean = true;
   public seleccionoDestino: boolean = false;
+
+  public duracion: string = "";
+  public cantKm: any;
+  public costo;
+  public datosViaje: boolean = false;
   
 
   public OriLat: number;
@@ -103,7 +108,6 @@ export class SolicitarViajeComponent implements OnInit {
   }
   guardarDestino() {
     let servicio = new google.maps.DistanceMatrixService();
-
     this.DestLat = this.latitude;
     this.DestLng = this.longitude;
     this.calcularRuta();
@@ -127,6 +131,9 @@ export class SolicitarViajeComponent implements OnInit {
     } else {
       alert(responseDis.rows[0].elements[0].distance.text + responseDis.rows[0].elements[0].duration.text);
       console.log(responseDis);
+      console.log("**");
+      console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
+      
     }
   }
   calcularRuta() {
@@ -147,6 +154,23 @@ export class SolicitarViajeComponent implements OnInit {
     //this.dir = {
     //  origin: { lat: 24.799448, lng: 120.979021 },
     //  destination: { lat: 24.799524, lng: 120.975017 }
+  }
+  calcularCosto(dist){
+    let minimo = 70;
+    let costo;
+    if (dist < 2){
+      costo = minimo;
+    }else{
+      costo = (dist-2)*30;
+    }
+    return costo;
+  }
+  MostrarInfoViaje(distancia, duracion){
+    console.log("LLEGO A MOSTRAR INFO");
+    this.cantKm = distancia;
+    this.duracion = duracion;
+    this.costo = this.calcularCosto(parseInt(this.cantKm));
+    this.datosViaje = true;
   }
 
 }

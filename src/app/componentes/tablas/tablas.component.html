@@ -1,13 +1,13 @@
+<p-table #dt [columns]="cols" [value]="cuerpoTabla" [paginator]="true" [rows]="11" selectionMode="single" [(selection)]="vehiculoSeleccionado" (onRowSelect)="onRowSelect($event)" >
 
-<p-table #dt [columns]="cols" [value]="cuerpoTabla" [paginator]="true" [rows]="11" selectionMode="single" [(selection)]="vehiculoSeleccionado" >
-
-        <ng-template pTemplate="caption">
-                <div style="text-align: right">        
-                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                    <input type="text" pInputText size="50" placeholder="Filtro Global" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-                </div>
-            </ng-template>
-<ng-template pTemplate="header" let-columns>
+    <ng-template pTemplate="caption">
+        <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Filtro Global" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                style="width:auto">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
                 {{col.header}}
@@ -31,7 +31,59 @@
     </ng-template>
 </p-table>
 <div *ngIf="vehiculoSeleccionado">
-        {{vehiculoSeleccionado.id_vehiculo}}
+    <p-panel header="Vehiculo Seleccionado">
+        <div class="ui-g ui-fluid">
+
+            <div class="ui-g-12 ui-md-4">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon">
+                        <i class="fa fa-car"></i>
+                    </span>
+                    <input type="text" pInputText disabled value={{vehiculoSeleccionado.marca}}>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-4">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon">
+                        <i class="fa fa-car"></i>
+                    </span>
+                    <input type="text" pInputText disabled value={{vehiculoSeleccionado.modelo}}>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-4">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon">
+                        <i class="fa fa-smoking"></i>
+                    </span>
+                    <input *ngIf="vehiculoSeleccionado.fumar" type="text" pInputText disabled value="Si">
+                    <input *ngIf="!vehiculoSeleccionado.fumar" type="text" pInputText disabled value="No">
+                    <span class="ui-inputgroup-addon">
+                        <i class="fa fa-broadcast-tower"></i>
+                    </span>
+                    <input *ngIf="vehiculoSeleccionado.aire" type="text" pInputText disabled value="Si">
+                    <input *ngIf="!vehiculoSeleccionado.aire" type="text" pInputText disabled value="No">
+                    <span class="ui-inputgroup-addon">
+                        <i class="fa fa-briefcase"></i>
+                    </span>
+                    <input *ngIf="vehiculoSeleccionado.baul" type="text" pInputText disabled value="Si">
+                    <input *ngIf="!vehiculoSeleccionado.baul" type="text" pInputText disabled value="No">
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-4" *ngIf="unChofer">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input type="text" pInputText disabled value={{unChofer.nombre}}>
+                    </div>
+                </div>
+
+        </div>
+    </p-panel>
+    {{vehiculoSeleccionado.id_vehiculo}}
 </div>
 
 

@@ -8,7 +8,6 @@ import { ReturnStatement } from '@angular/compiler';
   providedIn: 'root'
 })
 export class ViajesService {
-
   constructor(private miHttp: MiHttpService, private miViaje: Viaje) { }
 
   //////////////////////////////
@@ -18,32 +17,35 @@ export class ViajesService {
   setIdCliente(data) {
     this.miViaje.id_cliente = data;
   }
-  setIdChofer(data) {
-    this.miViaje.id_chofer = data;
-  }
   setIdVehiculo(data) {
     this.miViaje.id_vehiculo = data;
   }
-  setDireccionInicio(data) {
-    this.miViaje.direccion_inicio = data;
+  setLatitudInicio(data) {
+    this.miViaje.latitud_inicio = data;
   }
-  setDireccionDestino(data) {
-    this.miViaje.direccion_destino = data;
+  setLongitudInicio(data) {
+    this.miViaje.longitud_inicio = data;
   }
-  setPuntajeChofer(data) {
-    this.miViaje.puntaje_chofer = data;
+  setLatitudDestino(data) {
+    this.miViaje.latitud_destino = data;
   }
-  setPuntajeVehiculo(data) {
-    this.miViaje.puntaje_vehiculo = data;
+  setLongitudDestino(data) {
+    this.miViaje.longitud_destino = data;
   }
-  setPuntajeCliente(data) {
-    this.miViaje.puntaje_cliente = data;
+  setDistancia(data) {
+    this.miViaje.distancia = data;
   }
-  setEstado(data) {
-    this.miViaje.estado = data;
+  setCosto(data) {
+    this.miViaje.costo = data;
   }
   setFormaPago(data) {
     this.miViaje.forma_pago = data;
+  }
+  setFecha(data) {
+    this.miViaje.fecha = data;
+  }
+  setEstado(data) {
+    this.miViaje.estado = data;
   }
   ///////////////////////////////
   getIdViaje() {
@@ -55,67 +57,72 @@ export class ViajesService {
   getIdCliente() {
     return this.miViaje.id_cliente;
   }
-  getIdChofer() {
-    return this.miViaje.id_chofer;
-  }
   getIdVehiculo() {
     return this.miViaje.id_vehiculo;
   }
-  getDireccionInicio() {
-    return this.miViaje.direccion_inicio;
+  getLatitudInicio() {
+    return this.miViaje.latitud_inicio;
   }
-  getDireccionDestino() {
-    return this.miViaje.direccion_destino;
+  getLongitudInicio() {
+    return this.miViaje.longitud_inicio;
   }
-  getPuntajeChofer() {
-    return this.miViaje.puntaje_chofer;
+  getLatitudDestino() {
+    return this.miViaje.latitud_destino;
   }
-  getPuntajeVehiculo() {
-    return this.miViaje.puntaje_vehiculo;
+  getLongitudDestino() {
+    return this.miViaje.longitud_destino;
   }
-  getPuntajeCliente() {
-    return this.miViaje.puntaje_cliente;
+  getDistancia() {
+    return this.miViaje.distancia;
   }
-  getEstado() {
-    return this.miViaje.estado;
+  getCosto() {
+    return this.miViaje.costo;
   }
   getFormaPago() {
     return this.miViaje.forma_pago;
   }
-////////////////
-traerTodosLosviajes(): Promise<any> {
-  return this.miHttp.httpGetP('traerTodosLosviajes')
-    .then(data => {
-      console.log(data);
-      return data;
-    })
-}
-agregarViaje(data): Promise<any> {
-  return this.miHttp.httpPostP('agregarViaje', data)
-    .then(data => {
-      console.log(data);
-      return data;
-    })
-}
-traerViajePorId(data): Promise<any> {
-  return this.miHttp.httpPostP('traerViajePorId', data)
-    .then(data => {
-      console.log(data);
-      return data;
-    })
-}
-modificarViaje(data): Promise<any> {
-  return this.miHttp.httpPostP('modificarViaje', data)
-    .then(data => {
-      console.log(data);
-      return data;
-    })
-}
-borrarViaje(data): Promise<any> {
-  return this.miHttp.httpPostP('borrarViaje', data)
-    .then(data => {
-      console.log(data);
-      return data;
-    })
-}
+  getFecha() {
+    return this.miViaje.fecha;
+  }
+  getEstado() {
+    return this.miViaje.estado;
+  }
+
+  ////////////////
+  traerTodosLosviajes(): Promise<any> {
+    return this.miHttp.httpGetP('traerTodosLosviajes')
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+  }
+  agregarViaje(data): Promise<any> {
+    return this.miHttp.httpPostP('agregarViaje', data)
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+  }
+  traerViajePorId(data): Promise<any> {
+    return this.miHttp.httpPostP('traerViajePorId', data)
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+  }
+  modificarViaje(data): Promise<any> {
+    return this.miHttp.httpPostP('modificarViaje', data)
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+  }
+  borrarViaje(data): Promise<any> {
+    return this.miHttp.httpPostP('borrarViaje', data)
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+  }
+
 }

@@ -20,6 +20,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
+import {ChipsModule} from 'primeng/chips';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     ProgressSpinnerModule,
     ToggleButtonModule,
     InputTextModule,
-    CheckboxModule
+    CheckboxModule,
+    ChipsModule
     
   ],
   exports: [
@@ -66,7 +68,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     ProgressSpinnerModule,
     ToggleButtonModule,
     InputTextModule,
-    CheckboxModule
+    CheckboxModule,
+    ChipsModule
   ],
   declarations: []
 })

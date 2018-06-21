@@ -12,6 +12,8 @@ import { Cliente } from './clases/cliente';
 import { ServicioClienteService } from './servicios/cliente/servicio-cliente.service';
 import { Vehiculo } from './clases/vehiculo';
 import { VehiculosService } from './servicios/vehiculos/vehiculos.service';
+import { Chofer } from './clases/chofer';
+import { ChoferService } from './servicios/chofer/chofer.service';
 
 // IMPORT DE ANGULAR GOOGLE MAPS
 import { AgmCoreModule } from '@agm/core';
@@ -28,6 +30,7 @@ import { TablasComponent } from './componentes/tablas/tablas.component';
 import { SolicitarViajeComponent } from './componentes/solicitar-viaje/solicitar-viaje.component';
 import { RegistroClienteComponent } from './componentes/registro-cliente/registro-cliente.component';
 import { SinoPipe } from './pipes/sinoPipe/sino.pipe';
+import { AuthService } from './servicios/auth/auth.service';
 
 const config: Routes = [
   {
@@ -37,6 +40,7 @@ const config: Routes = [
   {
     path: "login",
     component: LoginComponent
+    //canActivate: [AuthService]
   },
   {
     path: "home",
@@ -56,7 +60,8 @@ const config: Routes = [
   },
   {
     path: "solicitarViaje",
-    component: SolicitarViajeComponent
+    component: SolicitarViajeComponent,
+    canActivate: [AuthService]
   }
 
 ]
@@ -90,7 +95,7 @@ const config: Routes = [
     }),
     AgmDirectionModule
   ],
-  providers: [Cliente,Vehiculo, ServicioClienteService, MiHttpService, AgmDirectionModule, HttpgoogleService, VehiculosService],
+  providers: [Cliente,Vehiculo,Chofer, ServicioClienteService, MiHttpService, AgmDirectionModule, HttpgoogleService, VehiculosService,ChoferService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

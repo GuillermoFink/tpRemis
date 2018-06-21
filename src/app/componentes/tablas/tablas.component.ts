@@ -4,7 +4,10 @@ import { Cliente } from '../../clases/cliente';
 import { Message, SelectItem } from 'primeng/components/common/api';
 
 import { Vehiculo } from '../../clases/vehiculo';
-import { VehiculosService} from '../../servicios/vehiculos/vehiculos.service';
+import { VehiculosService } from '../../servicios/vehiculos/vehiculos.service';
+
+import { Chofer } from '../../clases/chofer';
+import { ChoferService } from '../../servicios/chofer/chofer.service';
 
 @Component({
   selector: 'app-tablas',
@@ -17,8 +20,9 @@ export class TablasComponent implements OnInit {
   tituloTabla: string;
   opciones: SelectItem[];
   vehiculoSeleccionado: Vehiculo;
+  unChofer: Chofer;
 
-  constructor(private misClientes: ServicioClienteService, private unObjeto: Cliente, private unAuto: Vehiculo, private misVehiculos: VehiculosService) {
+  constructor(private misClientes: ServicioClienteService, private unObjeto: Cliente, private unAuto: Vehiculo, private misVehiculos: VehiculosService, private misChoferes: ChoferService) {
     console.log(misClientes.traerTodosLosClientes());
   }
 
@@ -29,8 +33,8 @@ export class TablasComponent implements OnInit {
       { label: 'No', value: 0 }
     ];
 
-    
-    this.misVehiculos.traerTodosLosVehiculos().then(data =>{
+
+    this.misVehiculos.traerTodosLosVehiculos().then(data => {
       this.cuerpoTabla = data;
     });
     this.tituloTabla = "TABLA DE VEHICULOS";
@@ -56,8 +60,14 @@ export class TablasComponent implements OnInit {
     */
   }
 
+  onRowSelect(event) {
+    this.misChoferes.traerChoferPorId(this.vehiculoSeleccionado.id_chofer).then(data => {
+      this.unChofer = data[0];
+    });
+  }
+
   ngOnChange(changes: SimpleChanges) {
-    
+
     /*
     this.misClientes.traerTodosLosClientes().then(data => {
       this.cuerpoTabla = data;

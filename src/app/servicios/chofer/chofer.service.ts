@@ -89,7 +89,7 @@ export class ChoferService {
       })
   }
   traerChoferPorId(data): Promise<any> {
-    return this.miHttp.httpPostP('traerChoferPorId', data)
+    return this.miHttp.httpPostP('traerChoferPorId', { 'id': data })
       .then(data => {
         console.log(data);
         return data;
