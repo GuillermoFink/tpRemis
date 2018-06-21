@@ -123,7 +123,18 @@ export class SolicitarViajeComponent implements OnInit {
       durationInTraffic: true,
       avoidHighways: false,
       avoidTolls: false
-    }, this.response_data);
+    },(responseDis, status) => {
+      if (status !== google.maps.DistanceMatrixStatus.OK ) {
+        console.log("error", status);
+      } else {
+        alert(responseDis.rows[0].elements[0].distance.text + responseDis.rows[0].elements[0].duration.text);
+        console.log(responseDis);
+        console.log("**");
+        console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
+        this.cantKm = 1;
+        
+      }
+    } );
   }
   response_data(responseDis, status) {
     if (status !== google.maps.DistanceMatrixStatus.OK || status != "OK") {
@@ -133,6 +144,7 @@ export class SolicitarViajeComponent implements OnInit {
       console.log(responseDis);
       console.log("**");
       console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
+      this.cantKm = 1;
       
     }
   }
