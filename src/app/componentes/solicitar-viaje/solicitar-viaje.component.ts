@@ -19,6 +19,8 @@ export class SolicitarViajeComponent implements OnInit {
 
   public duracion: string = "";
   public cantKm: any;
+  public distancia: string;
+  public tipoDistancia: string;
   public costo;
   public datosViaje: boolean = false;
   
@@ -127,11 +129,14 @@ export class SolicitarViajeComponent implements OnInit {
       if (status !== google.maps.DistanceMatrixStatus.OK ) {
         console.log("error", status);
       } else {
-        alert(responseDis.rows[0].elements[0].distance.text + responseDis.rows[0].elements[0].duration.text);
-        console.log(responseDis);
-        console.log("**");
-        console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
-        this.cantKm = 1;
+        //alert(responseDis.rows[0].elements[0].distance.text + responseDis.rows[0].elements[0].duration.text);
+        let distancia = responseDis.rows[0].elements[0].distance.text;
+        let duracion = responseDis.rows[0].elements[0].duration.text;
+        this.MostrarInfoViaje(distancia,duracion);
+        //console.log(responseDis);
+        //console.log("**");
+        //console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
+        
         
       }
     } );
@@ -144,7 +149,6 @@ export class SolicitarViajeComponent implements OnInit {
       console.log(responseDis);
       console.log("**");
       console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
-      this.cantKm = 1;
       
     }
   }
@@ -167,21 +171,31 @@ export class SolicitarViajeComponent implements OnInit {
     //  origin: { lat: 24.799448, lng: 120.979021 },
     //  destination: { lat: 24.799524, lng: 120.975017 }
   }
-  calcularCosto(dist){
+  calcularCosto(dist, tipo){
     let minimo = 70;
-    let costo;
-    if (dist < 2){
-      costo = minimo;
+    if (tipo == 'km'){
+      
+      let costo;
+      if (dist < 2){
+        costo = minimo;
+      }else{
+        costo = (dist-2)*30;
+      }
+      return costo;
     }else{
-      costo = (dist-2)*30;
+      return minimo;
     }
-    return costo;
+    
   }
   MostrarInfoViaje(distancia, duracion){
-    console.log("LLEGO A MOSTRAR INFO");
+    this.distancia=distancia;
+    this.cantKm = distancia.split(' ');
+    this.tipoDistancia = this.cantKm[1];
+    this.cantKm = this.cantKm[0];
+    
     this.cantKm = distancia;
     this.duracion = duracion;
-    this.costo = this.calcularCosto(parseInt(this.cantKm));
+    this.costo = this.calcularCosto(parseInt(this.cantKm), this.tipoDistancia);
     this.datosViaje = true;
   }
 

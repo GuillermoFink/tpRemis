@@ -18,7 +18,7 @@ export class AuthService {
     console.log("*****DATOS DE PAYLOAD CAN ACTIVATE ******* ");
     console.log(datos);
     console.log(datos.data.nombre);
-    if(datos.data.nombre == "asdasda"){
+    if(datos.data.nombre != "asdasda"){
       rta = true;
     }else{
       this.miRouter.navigate(["/login"]);

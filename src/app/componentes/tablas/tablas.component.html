@@ -3,7 +3,7 @@
     <ng-template pTemplate="caption">
         <div style="text-align: right">
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input type="text" pInputText size="50" placeholder="Filtro Global" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            <input type="text" pInputText size="20" placeholder="Filtro Global" (input)="dt.filterGlobal($event.target.value, 'contains')"
                 style="width:auto">
         </div>
     </ng-template>
@@ -77,13 +77,12 @@
                         <span class="ui-inputgroup-addon">
                             <i class="fa fa-user"></i>
                         </span>
-                        <input type="text" pInputText disabled value={{unChofer.nombre}}>
+                        <input type="text" pInputText disabled value='{{unChofer.nombre}} {{unChofer.apellido}}'>
                     </div>
                 </div>
 
         </div>
     </p-panel>
-    {{vehiculoSeleccionado.id_vehiculo}}
 </div>
 
 
