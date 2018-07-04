@@ -14,6 +14,10 @@ import { Vehiculo } from './clases/vehiculo';
 import { VehiculosService } from './servicios/vehiculos/vehiculos.service';
 import { Chofer } from './clases/chofer';
 import { ChoferService } from './servicios/chofer/chofer.service';
+import { Viaje } from './clases/viaje';
+import { ViajesService } from './servicios/viajes/viajes.service';
+import { Usu } from './clases/usu';
+import { UsuarioService } from './servicios/usuario/usuario.service';
 
 // IMPORT DE ANGULAR GOOGLE MAPS
 import { AgmCoreModule } from '@agm/core';
@@ -95,7 +99,21 @@ const config: Routes = [
     }),
     AgmDirectionModule
   ],
-  providers: [Cliente,Vehiculo,Chofer, ServicioClienteService, MiHttpService, AgmDirectionModule, HttpgoogleService, VehiculosService,ChoferService],
+  providers: [
+    Cliente,
+    Vehiculo,
+    Chofer,
+    Viaje,
+    Usu,
+    ServicioClienteService,
+    MiHttpService,
+    AgmDirectionModule,
+    HttpgoogleService,
+    VehiculosService,
+    ChoferService,
+    ViajesService,
+    UsuarioService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

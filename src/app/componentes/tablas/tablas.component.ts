@@ -8,6 +8,7 @@ import { VehiculosService } from '../../servicios/vehiculos/vehiculos.service';
 
 import { Chofer } from '../../clases/chofer';
 import { ChoferService } from '../../servicios/chofer/chofer.service';
+import { ViajesService } from '../../servicios/viajes/viajes.service';
 
 @Component({
   selector: 'app-tablas',
@@ -22,7 +23,14 @@ export class TablasComponent implements OnInit {
   vehiculoSeleccionado: Vehiculo;
   unChofer: Chofer;
 
-  constructor(private misClientes: ServicioClienteService, private unObjeto: Cliente, private unAuto: Vehiculo, private misVehiculos: VehiculosService, private misChoferes: ChoferService) {
+  constructor(
+    private misClientes: ServicioClienteService, 
+    private unObjeto: Cliente, 
+    private unAuto: Vehiculo, 
+    private misVehiculos: VehiculosService, 
+    private misChoferes: ChoferService,
+    private miServicioViaje: ViajesService
+  ) {
     console.log(misClientes.traerTodosLosClientes());
   }
 
@@ -61,6 +69,8 @@ export class TablasComponent implements OnInit {
   }
 
   onRowSelect(event) {
+    this.miServicioViaje.setIdVehiculo(this.vehiculoSeleccionado.id_vehiculo);
+    this.miServicioViaje.setIdChofer(this.vehiculoSeleccionado.id_chofer);
     this.misChoferes.traerChoferPorId(this.vehiculoSeleccionado.id_chofer).then(data => {
       this.unChofer = data[0];
     });

@@ -11,6 +11,9 @@ export class ViajesService {
   constructor(private miHttp: MiHttpService, private miViaje: Viaje) { }
 
   //////////////////////////////
+  setIdChofer(data){
+    this.miViaje.id_chofer;
+  }
   setIdEncargado(data) {
     this.miViaje.id_encargado = data;
   }
@@ -46,6 +49,12 @@ export class ViajesService {
   }
   setEstado(data) {
     this.miViaje.estado = data;
+  }
+  setMiInicio(data){
+    this.miViaje.inicio;
+  }
+  setDestino(data){
+    this.miViaje.destino;
   }
   ///////////////////////////////
   getIdViaje() {
@@ -87,6 +96,16 @@ export class ViajesService {
   getEstado() {
     return this.miViaje.estado;
   }
+  getMiInicio(){
+    return this.miViaje.inicio;
+  }
+  getMiDestino(){
+    return this.miViaje.destino;
+  }
+  getIdChofer(){
+    return this.miViaje.id_chofer;
+  }
+ 
 
   ////////////////
   traerTodosLosviajes(): Promise<any> {
@@ -104,12 +123,29 @@ export class ViajesService {
       })
   }
   traerViajePorId(data): Promise<any> {
-    return this.miHttp.httpPostP('traerViajePorId', data)
+    return this.miHttp.httpPostP('traerViajePorId', {id: data})
       .then(data => {
         console.log(data);
         return data;
       })
   }
+
+  traerViajesPorChofer(data): Promise<any> {
+    return this.miHttp.httpPostP('traerViajesPorChofer', {id: data})
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+  }
+
+  traerViajesPorCliente(data): Promise<any> {
+    return this.miHttp.httpPostP('traerViajesPorCliente', {id: data})
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+  }
+
   modificarViaje(data): Promise<any> {
     return this.miHttp.httpPostP('modificarViaje', data)
       .then(data => {

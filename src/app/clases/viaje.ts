@@ -4,6 +4,7 @@ export class Viaje {
     id_encargado: number;
     id_cliente: number;
     id_vehiculo: number;
+    id_chofer: number;
 
     latitud_inicio: number;
     longitud_inicio: number;
@@ -16,5 +17,9 @@ export class Viaje {
     forma_pago: number;
     fecha: number;
     estado: number;
+
+    inicio: string;
+    destino: string;
+
     constructor() { }
 }

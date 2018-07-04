@@ -5,6 +5,8 @@ import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 import { HttpgoogleService } from '../../servicios/httpgmaps/httpgoogle.service';
+import { ViajesService } from '../../servicios/viajes/viajes.service';
+import { UsuarioService } from '../../servicios/usuario/usuario.service';
 
 
 @Component({
@@ -23,7 +25,9 @@ export class SolicitarViajeComponent implements OnInit {
   public tipoDistancia: string;
   public costo;
   public datosViaje: boolean = false;
-  
+
+  public nombre: string;
+
 
   public OriLat: number;
   public OriLng: number;
@@ -49,11 +53,12 @@ export class SolicitarViajeComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private miServicio: HttpgoogleService
+    private miServicio: HttpgoogleService,
+    private miServicioViaje: ViajesService,
+    private miServicioUsuario: UsuarioService
   ) { }
 
   ngOnInit() {
-
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
@@ -125,21 +130,22 @@ export class SolicitarViajeComponent implements OnInit {
       durationInTraffic: true,
       avoidHighways: false,
       avoidTolls: false
-    },(responseDis, status) => {
-      if (status !== google.maps.DistanceMatrixStatus.OK ) {
+    }, (responseDis, status) => {
+      if (status !== google.maps.DistanceMatrixStatus.OK) {
         console.log("error", status);
       } else {
+        console.log(responseDis);
         //alert(responseDis.rows[0].elements[0].distance.text + responseDis.rows[0].elements[0].duration.text);
         let distancia = responseDis.rows[0].elements[0].distance.text;
         let duracion = responseDis.rows[0].elements[0].duration.text;
-        this.MostrarInfoViaje(distancia,duracion);
+        this.MostrarInfoViaje(distancia, duracion);
         //console.log(responseDis);
         //console.log("**");
         //console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
-        
-        
+
+
       }
-    } );
+    });
   }
   response_data(responseDis, status) {
     if (status !== google.maps.DistanceMatrixStatus.OK || status != "OK") {
@@ -148,8 +154,8 @@ export class SolicitarViajeComponent implements OnInit {
       alert(responseDis.rows[0].elements[0].distance.text + responseDis.rows[0].elements[0].duration.text);
       console.log(responseDis);
       console.log("**");
-      console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
-      
+      console.log("VALOR DEL RESPONSE.TEXT: " + responseDis.rows[0].elements[0].distance.text);
+
     }
   }
   calcularRuta() {
@@ -171,28 +177,29 @@ export class SolicitarViajeComponent implements OnInit {
     //  origin: { lat: 24.799448, lng: 120.979021 },
     //  destination: { lat: 24.799524, lng: 120.975017 }
   }
-  calcularCosto(dist, tipo){
+  calcularCosto(dist, tipo) {
     let minimo = 70;
-    if (tipo == 'km'){
-      
+    if (tipo == 'km') {
+
       let costo;
-      if (dist < 2){
+      if (dist < 2) {
         costo = minimo;
-      }else{
-        costo = (dist-2)*30;
+      } else {
+        costo = (dist - 2) * 30;
+        costo+=70;
       }
       return costo;
-    }else{
+    } else {
       return minimo;
     }
-    
+
   }
-  MostrarInfoViaje(distancia, duracion){
-    this.distancia=distancia;
+  MostrarInfoViaje(distancia, duracion) {
+    this.distancia = distancia;
     this.cantKm = distancia.split(' ');
     this.tipoDistancia = this.cantKm[1];
     this.cantKm = this.cantKm[0];
-    
+
     this.cantKm = distancia;
     this.duracion = duracion;
     this.costo = this.calcularCosto(parseInt(this.cantKm), this.tipoDistancia);
