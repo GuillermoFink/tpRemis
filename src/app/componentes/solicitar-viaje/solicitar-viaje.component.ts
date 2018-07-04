@@ -5,8 +5,12 @@ import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 import { HttpgoogleService } from '../../servicios/httpgmaps/httpgoogle.service';
+import { Viaje } from '../../clases/viaje';
 import { ViajesService } from '../../servicios/viajes/viajes.service';
 import { UsuarioService } from '../../servicios/usuario/usuario.service';
+import { Usu } from '../../clases/usu';
+import { Router } from '@angular/router';
+import swal from 'sweetalert2'
 
 
 @Component({
@@ -55,7 +59,10 @@ export class SolicitarViajeComponent implements OnInit {
     private ngZone: NgZone,
     private miServicio: HttpgoogleService,
     private miServicioViaje: ViajesService,
-    private miServicioUsuario: UsuarioService
+    private miUsu: Usu,
+    private miViaje: Viaje,
+    private miServicioUsuario: UsuarioService,
+    private miRouter: Router
   ) { }
 
   ngOnInit() {
@@ -139,17 +146,21 @@ export class SolicitarViajeComponent implements OnInit {
         let distancia = responseDis.rows[0].elements[0].distance.text;
         let duracion = responseDis.rows[0].elements[0].duration.text;
         this.MostrarInfoViaje(distancia, duracion);
-        this.miServicioViaje.setCosto(this.costo);
-        this.miServicioViaje.setEstado(0);
+        let fecha = new Date();
+        this.miServicioViaje.setIdEncargado(1);
+        this.miServicioViaje.setIdCliente(this.miServicioUsuario.getId());
         this.miServicioViaje.setDistancia(this.distancia);
+        this.miServicioViaje.setEstado(0);
+        this.miServicioViaje.setCosto(this.costo);
         this.miServicioViaje.setFormaPago(1);
-        this.miServicioViaje.setLatitudInicio(new google.maps.LatLng(this.OriLat,this.OriLng));
-        this.miServicioViaje.setLatitudInicio(new google.maps.LatLng(this.DestLat,this.DestLng));
-        //console.log(responseDis);
-        //console.log("**");
-        //console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);
-
-
+        this.miServicioViaje.setLatitudInicio(this.OriLat);
+        this.miServicioViaje.setLongitudInicio(this.OriLng);
+        this.miServicioViaje.setLatitudDestino(this.DestLat);
+        this.miServicioViaje.setLongitudDestino(this.DestLng);
+        this.miServicioViaje.setMiInicio(responseDis.originAddresses[0]);
+        this.miServicioViaje.setDestino(responseDis.destinationAddresses[0]);
+        this.miServicioViaje.setFecha(fecha);
+        console.log(this.miViaje);
       }
     });
   }
@@ -192,7 +203,7 @@ export class SolicitarViajeComponent implements OnInit {
         costo = minimo;
       } else {
         costo = (dist - 2) * 30;
-        costo+=70;
+        costo += 70;
       }
       return costo;
     } else {
@@ -210,6 +221,28 @@ export class SolicitarViajeComponent implements OnInit {
     this.duracion = duracion;
     this.costo = this.calcularCosto(parseInt(this.cantKm), this.tipoDistancia);
     this.datosViaje = true;
+  }
+
+  AceptarViaje() {
+    this.miServicioViaje.agregarViaje(this.miViaje)
+      .then(data => {
+        console.log(data);
+        if (data != 'error') {
+          swal({
+            type: 'success',
+            title: 'OK',
+            text: 'Viaje Registrado!',
+          })
+          this.miRouter.navigate(['/misViajes']);
+        }else{
+          swal({
+            type: 'error',
+            title: 'Error',
+            text: 'Error al generar la petición',
+          })
+        }
+        
+      })
   }
 
 }

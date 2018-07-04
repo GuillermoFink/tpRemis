@@ -9,6 +9,7 @@ import { VehiculosService } from '../../servicios/vehiculos/vehiculos.service';
 import { Chofer } from '../../clases/chofer';
 import { ChoferService } from '../../servicios/chofer/chofer.service';
 import { ViajesService } from '../../servicios/viajes/viajes.service';
+import { Viaje } from '../../clases/viaje';
 
 @Component({
   selector: 'app-tablas',
@@ -29,7 +30,8 @@ export class TablasComponent implements OnInit {
     private unAuto: Vehiculo,
     private misVehiculos: VehiculosService,
     private misChoferes: ChoferService,
-    private miServicioViaje: ViajesService
+    private miServicioViaje: ViajesService,
+    private miViaje: Viaje
   ) {
     console.log(misClientes.traerTodosLosClientes());
   }
@@ -75,6 +77,8 @@ export class TablasComponent implements OnInit {
       this.unChofer = data[0];
       this.miServicioViaje.setIdVehiculo(this.vehiculoSeleccionado.id_vehiculo);
       this.miServicioViaje.setIdChofer(this.unChofer.id_chofer);
+      this.miViaje.id_vehiculo = this.vehiculoSeleccionado.id_vehiculo;
+      this.miViaje.id_chofer = this.unChofer.id_chofer;
     });
 
   }

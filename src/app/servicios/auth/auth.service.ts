@@ -15,7 +15,7 @@ export class AuthService {
       let datos = JSON.parse(atob(pay2));
       console.log("datos del token");
       this.miServicioUsuario.setApellido(datos['data'][0]['apellido']);
-      this.miServicioUsuario.setId(datos['data'][0]['id']);
+      this.miServicioUsuario.setId(datos['data'][0]['id_usuario']);
       this.miServicioUsuario.setMail(datos['data'][0]['mail']);
       this.miServicioUsuario.setNombre(datos['data'][0]['nombre']);
       this.miServicioUsuario.setTipo(datos['data'][0]['tipo']);
@@ -38,7 +38,7 @@ export class AuthService {
     console.log(datos['data'][0]['nombre']);
     if(datos['data'][0]['nombre'] != ""){
       this.miServicioUsuario.setApellido(datos['data'][0]['apellido']);
-      this.miServicioUsuario.setId(datos['data'][0]['id']);
+      this.miServicioUsuario.setId(datos['data'][0]['id_usuario']);
       this.miServicioUsuario.setMail(datos['data'][0]['mail']);
       this.miServicioUsuario.setNombre(datos['data'][0]['nombre']);
       this.miServicioUsuario.setTipo(datos['data'][0]['tipo']);

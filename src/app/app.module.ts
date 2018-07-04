@@ -35,6 +35,7 @@ import { SolicitarViajeComponent } from './componentes/solicitar-viaje/solicitar
 import { RegistroClienteComponent } from './componentes/registro-cliente/registro-cliente.component';
 import { SinoPipe } from './pipes/sinoPipe/sino.pipe';
 import { AuthService } from './servicios/auth/auth.service';
+import { MisViajesComponent } from './componentes/mis-viajes/mis-viajes.component';
 
 const config: Routes = [
   {
@@ -66,6 +67,10 @@ const config: Routes = [
     path: "solicitarViaje",
     component: SolicitarViajeComponent,
     canActivate: [AuthService]
+  },
+  {
+    path: "misViajes",
+    component: MisViajesComponent
   }
 
 ]
@@ -82,6 +87,7 @@ const config: Routes = [
     SolicitarViajeComponent,
     RegistroClienteComponent,
     SinoPipe,
+    MisViajesComponent,
 
   ],
   imports: [

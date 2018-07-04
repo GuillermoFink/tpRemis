@@ -51,10 +51,10 @@ export class ViajesService {
     this.miViaje.estado = data;
   }
   setMiInicio(data){
-    this.miViaje.inicio;
+    this.miViaje.inicio = data;
   }
   setDestino(data){
-    this.miViaje.destino;
+    this.miViaje.destino = data;
   }
   ///////////////////////////////
   getIdViaje() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MiHttpService } from '../../servicios/http/mi-http.service';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../servicios/usuario/usuario.service';
+import swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',

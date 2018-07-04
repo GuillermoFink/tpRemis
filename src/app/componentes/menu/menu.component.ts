@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
                 items: [
                     { label: 'Imagen', icon: 'fa-image' },
                     { label: 'Preferencias', icon: 'fa-cogs' },
-                    { label: 'Mis viajes', icon: 'fa-map-signs' },
+                    { label: 'Mis viajes', icon: 'fa-map-signs', routerLink: ['/misViajes'] },
                     { label: 'Mis calificaciones', icon: 'fa-star' },
                     { label: 'Calificaciones enviadas', icon: 'fa-star' }
                 ]
