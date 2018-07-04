@@ -24,10 +24,10 @@ export class TablasComponent implements OnInit {
   unChofer: Chofer;
 
   constructor(
-    private misClientes: ServicioClienteService, 
-    private unObjeto: Cliente, 
-    private unAuto: Vehiculo, 
-    private misVehiculos: VehiculosService, 
+    private misClientes: ServicioClienteService,
+    private unObjeto: Cliente,
+    private unAuto: Vehiculo,
+    private misVehiculos: VehiculosService,
     private misChoferes: ChoferService,
     private miServicioViaje: ViajesService
   ) {
@@ -73,7 +73,10 @@ export class TablasComponent implements OnInit {
     this.miServicioViaje.setIdChofer(this.vehiculoSeleccionado.id_chofer);
     this.misChoferes.traerChoferPorId(this.vehiculoSeleccionado.id_chofer).then(data => {
       this.unChofer = data[0];
+      this.miServicioViaje.setIdVehiculo(this.vehiculoSeleccionado.id_vehiculo);
+      this.miServicioViaje.setIdChofer(this.unChofer.id_chofer);
     });
+
   }
 
   ngOnChange(changes: SimpleChanges) {

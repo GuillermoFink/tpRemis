@@ -139,6 +139,12 @@ export class SolicitarViajeComponent implements OnInit {
         let distancia = responseDis.rows[0].elements[0].distance.text;
         let duracion = responseDis.rows[0].elements[0].duration.text;
         this.MostrarInfoViaje(distancia, duracion);
+        this.miServicioViaje.setCosto(this.costo);
+        this.miServicioViaje.setEstado(0);
+        this.miServicioViaje.setDistancia(this.distancia);
+        this.miServicioViaje.setFormaPago(1);
+        this.miServicioViaje.setLatitudInicio(new google.maps.LatLng(this.OriLat,this.OriLng));
+        this.miServicioViaje.setLatitudInicio(new google.maps.LatLng(this.DestLat,this.DestLng));
         //console.log(responseDis);
         //console.log("**");
         //console.log("VALOR DEL RESPONSE.TEXT: "+responseDis.rows[0].elements[0].distance.text);

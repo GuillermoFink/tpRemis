@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         let pay2 = payload.replace('-', '+').replace('_', '/');
         let datos = JSON.parse(atob(pay2));
         console.log(datos);
-        this.miRoot.navigate(['/solicitarViaje']);
+        this.miRoot.navigate(['/home']);
       })
   }
 }

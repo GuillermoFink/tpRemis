@@ -62,17 +62,22 @@
       <p-panel header="Datos del viaje" *ngIf="datosViaje">
         <div *ngIf="datosViaje" class="ui-grid-row">
           <div class="ui-grid-col-12" style="text-align: center;">
-            <div class="ui-grid-col-4">
+            <div class="ui-grid-col-3">
               <h3 class="first">Distancia del viaje</h3>
               {{distancia}}
             </div>
-            <div class="ui-grid-col-4">
+            <div class="ui-grid-col-3">
               <h3 class="first">Duracion aproximada</h3>
               {{duracion}}
             </div>
-            <div class="ui-grid-col-4">
+            <div class="ui-grid-col-3">
               <h3 class="first">Costo</h3>
               {{costo}}
+            </div>
+            <div class="ui-grid-col-3">
+              <h3 class="first">Medio de pago</h3>
+              <span class="ui-inputgroup-addon"><button><i class="fa fa-credit-card"></i></button></span>  
+              <span class="ui-inputgroup-addon"><button>$</button></span> 
             </div>
           </div>
         </div>
