@@ -149,7 +149,7 @@ export class SolicitarViajeComponent implements OnInit {
         let fecha = new Date();
         this.miServicioViaje.setIdEncargado(1);
         this.miServicioViaje.setIdCliente(this.miServicioUsuario.getId());
-        this.miServicioViaje.setDistancia(this.distancia);
+        this.miServicioViaje.setDistancia(distancia);
         this.miServicioViaje.setEstado(0);
         this.miServicioViaje.setCosto(this.costo);
         this.miServicioViaje.setFormaPago(1);

@@ -36,6 +36,7 @@ import { RegistroClienteComponent } from './componentes/registro-cliente/registr
 import { SinoPipe } from './pipes/sinoPipe/sino.pipe';
 import { AuthService } from './servicios/auth/auth.service';
 import { MisViajesComponent } from './componentes/mis-viajes/mis-viajes.component';
+import { EstadoViajePipe } from './pipes/estadoViaje/estado-viaje.pipe';
 
 const config: Routes = [
   {
@@ -70,7 +71,8 @@ const config: Routes = [
   },
   {
     path: "misViajes",
-    component: MisViajesComponent
+    component: MisViajesComponent,
+    canActivate: [AuthService]
   }
 
 ]
@@ -88,6 +90,7 @@ const config: Routes = [
     RegistroClienteComponent,
     SinoPipe,
     MisViajesComponent,
+    EstadoViajePipe,
 
   ],
   imports: [
